@@ -1,10 +1,13 @@
 #include<iostream>
+#include<fstream>
 #include<cstdio>
 #include<cstring>
 #include<queue>
 using namespace std;
-const int maxn=2005;
-const int maxm=4000001;
+ifstream fin("4.in", ios::in);
+ofstream fout("4.out", ios::out);
+const int maxn=200005;
+const int maxm=5000005;
 int n,m,s,t,k;
 int cnt,h[maxn];
 int cnt_rev,h_rev[maxn];
@@ -120,7 +123,7 @@ void dfs2(int x)
 }
 
 void Build()
-{
+{	
 	//建左偏树数据结构，用于维护信息
 	for(int x=1;x<=n;x++)
 	{
@@ -148,7 +151,7 @@ void Solve()
     	count++;
     	if(count==k-1)
 		{
-      		printf("%d\n",v);
+      		fout<<v<<endl;
       		return;
     	}
     	if(st.lc[x])  // 可并堆删除直接把左右儿子加入优先队列中
@@ -158,27 +161,27 @@ void Solve()
     	int y=st.rt[st.v[x].x];
     	if(y)Q.push({y,v+st.v[y].v});
   	}
-  	printf("-1\n");
+  	fout<<-1<<endl;
 }
 int main()
 {
-    cin>>n>>m>>s>>t>>k;
+    fin>>n>>m>>s>>t>>k;
     for(int i=1;i<=m;i++)
     {
         int u,v,w;
-        cin>>u>>v>>w;
+        fin>>u>>v>>w;
         add(u,v,w);
     }
     Dij_rev();
     //k==1:最短路 
     if(k==1)
     {
-    	cout<<(vst[s] ? d[s] : -1)<<endl;
+    	fout<<(vst[s] ? d[s] : -1)<<endl;
     	return 0;
 	}
-   dfs(t);
-   Build();
-   Solve();
+   	dfs(t);		
+	Build();
+   	Solve();
 }
 /*
 5 7 1 5 10086

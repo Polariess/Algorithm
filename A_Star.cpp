@@ -1,10 +1,13 @@
 #include<iostream>
+#include<fstream>
 #include<cstdio>
 #include<cstring>
 #include<queue>
 using namespace std;
-const int maxn=2005;
-const int maxm=4000001;
+ifstream fin("1.in", ios::in);
+ofstream fout("1.out", ios::out);
+const int maxn=200005;
+const int maxm=5000005;
 int n,m,s,t,k;
 int cnt,h[maxn];
 int cnt_rev,h_rev[maxn];
@@ -78,23 +81,23 @@ void A_Star()
     	count[x]++;
     	if(x==t&&count[x]==k)
 		{
-      		printf("%d\n",v);
+      		fout<<v<<endl;
       		return;
     	}
     	if(count[x]>k) continue;
     	for(int i=h[x];i;i=e[i].next)
 			q.push({e[i].to,v+e[i].v});
     }
-  	printf("-1\n");
+  	fout<<-1<<endl;
 }
 
 int main()
 {
-    cin>>n>>m>>s>>t>>k;
+    fin>>n>>m>>s>>t>>k;
     for(int i=1;i<=m;i++)
     {
         int u,v,w;
-        cin>>u>>v>>w;
+        fin>>u>>v>>w;
         add(u,v,w);
     }
     Dij_rev();

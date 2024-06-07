@@ -3,9 +3,9 @@ using namespace std;
 const int maxn=1e5;
 int u[maxn],v[maxn];
 int main(){
-    freopen("1.in","w",stdout);
+    freopen("4.in","w",stdout);
     srand(time(0));
-    int n=10,m=58,s=rand()%n+1,t=rand()%n+1,k=rand()%10;
+    int n=1055,m=50005,s=rand()%n+1,t=rand()%n+1,k=rand()%15;
     while(t==s)
 	{
         t=rand()%n+1;
